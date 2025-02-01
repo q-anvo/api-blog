@@ -1,0 +1,375 @@
+openapi: 3.1.0
+info:
+  title: laravel-blog
+  version: '1.0'
+  summary: Plateforme d'articles'
+  description: |-
+    Api de la plateforme d'articles'.
+servers:
+  - url: 'http://localhost'
+paths:
+  /api/articles:
+    get:
+      operationId: get-api-articles
+      summary: Liste des articles
+      description: Liste des articles avec recherche optionelle
+      tags:
+        - Article
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: search
+          description: paramètre de recherche textuelle dans le titre de l'article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        author:
+                          type: object
+                          required:
+                            - user_id
+                            - user_name
+                          properties:
+                            id:
+                              type: integer
+                            name:
+                              type: string
+                        topics_count:
+                          type: integer
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                      required:
+                        - id
+                        - title
+                        - author
+                        - topics_count
+                        - created_at
+                        - updated_at
+                required:
+                  - data
+    post:
+      operationId: post-api-articles
+      summary: Création d'un article
+      description: Création d'un article par l'utilisateur authentifié
+      tags:
+        - Article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                summary:
+                  type: string
+                url:
+                  type: string
+                topics:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: integer
+              required:
+                - title
+                - summary
+                - url
+                - topics
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - title
+                      - author
+                      - topics
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                      author:
+                        type: object
+                        required:
+                          - id
+                          - name
+                        properties:
+                          id:
+                            type: integer
+                          name:
+                            type: string
+                      topics:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            label:
+                              type: string
+                          required:
+                            - id
+                            - label
+                required:
+                  - data
+  '/api/articles/{article}':
+    parameters:
+      - schema:
+          type: integer
+        name: article
+        in: path
+        required: true
+        description: identifiant de l'article
+    get:
+      operationId: get-api-articles-article
+      summary: Détails de l'article
+      description: Récupération des détails de l'article
+      tags:
+        - Article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - title
+                      - summary
+                      - url
+                      - author
+                      - created_at
+                      - updated_at
+                      - topics
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                      author:
+                        type: object
+                        required:
+                          - user_id
+                          - user_name
+                        properties:
+                          id:
+                            type: integer
+                          name:
+                            type: string
+                      topics_count:
+                        type: integer
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                      topics:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            label:
+                              type: string
+                          required:
+                            - id
+                            - label
+                required:
+                  - data
+    put:
+      operationId: put-api-articles-article
+      summary: Mise à jour de l'article
+      description: Mise à jour de l'article. Seul le créateur de l'article peut le mettre à jour
+      tags:
+        - Article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                summary:
+                  type: string
+                url:
+                  type: string
+                topics:
+                  type: array
+                  items:
+                    type: integer
+              required:
+                - title
+                - summary
+                - url
+                - topics
+      responses:
+        '204':
+          description: OK - No content
+    delete:
+      operationId: delete-api-articles-article
+      summary: Suppression de l'article
+      description: Suppression de l'article. Seul le créateur de l'article peut le supprimer
+      tags:
+        - Article
+      responses:
+        '204':
+          description: OK - No content
+  /api/authors:
+    post:
+      operationId: post-api-authors
+      summary: Ajout du role auteur
+      description: Ajout du role auteur à l'utilisateur authentifié
+      tags:
+        - Author
+      responses:
+        '204':
+          description: No content
+  /api/topics:
+    get:
+      operationId: get-api-topics
+      summary: Liste des topics
+      description: Liste des topics avec recherche optionelle
+      tags:
+        - topic
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: search
+          description: paramètre de recherche textuelle dans le titre du topic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        label:
+                          type: string
+                      required:
+                        - id
+                        - label
+                required:
+                  - data
+    post:
+      operationId: post-api-topics
+      summary: Création d'un topic
+      description: Création d'un topic par l'utilisateur authentifié
+      tags:
+        - Topic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+              required:
+                - label
+      responses:
+        '204':
+          description: No content
+  '/api/topics/{topic}':
+    parameters:
+      - schema:
+          type: integer
+        name: topic
+        in: path
+        required: true
+        description: identifiant du topic
+    get:
+      operationId: get-api-topics-topic
+      summary: Détails du topic
+      description: Récupération des détails du topic
+      tags:
+        - topic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - label
+                    properties:
+                      id:
+                        type: integer
+                      label:
+                        type: string
+                required:
+                  - data
+    put:
+      operationId: put-api-topics-topic
+      summary: Mise à jour du topic
+      description: Mise à jour du topic.
+      tags:
+        - topic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+              required:
+                - label
+      responses:
+        '204':
+          description: OK - No content
+    delete:
+      operationId: delete-api-topics-topic
+      summary: Suppression du topic
+      description: Suppression du topic. Seul le créateur du topic peut le supprimer
+      tags:
+        - Topic
+      responses:
+        '204':
+          description: OK - No content
+
+tags:
+  - name: Article
+  - name: Author
+  - name: Topic

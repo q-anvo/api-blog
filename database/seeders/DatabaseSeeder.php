@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Domain\Blog\Models\Article;
+use Domain\User\Models\Author;
+use Domain\User\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+
+        $authors = Author::factory()->count(5)->create();
+
+        foreach ($authors as $author) {
+            Article::factory()
+                ->count(random_int(0, 4))
+                ->for($author)
+                ->create();
+        }
 
         User::factory()->create([
             'name' => 'Test User',

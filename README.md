@@ -7,60 +7,112 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Blog API - Laravel (DDD & Onion Architecture)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Overview
+This project is a **RESTful API** for a **blog system**, built with **Laravel** and following the **Domain-Driven Design (DDD)** principles, as well as the **Onion Architecture**. The project structure is heavily inspired by **Spatie's DDD approach**, ensuring separation of concerns and maintainability.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Structure
+The project is divided into three main namespaces:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **1. App Layer (Application Layer)**
+Located in `app/App/`, this layer is responsible for handling both API and CLI interactions. It consists of two main applications:
 
-## Learning Laravel
+- **Blog Application (`app/App/Blog/`)**: Handles HTTP requests for the REST API.
+  - **Controllers**: Manage API requests and delegate business logic to domain actions.
+  - **Requests**: Handle request validation.
+  - **Resources**: Transform domain data into API responses.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Console Application (`app/App/Console/`)**: Handles CLI-based interactions.
+  - **Commands**: Define artisan commands for data manipulation and exports.
+  - **Concerns**: Provide shared functionalities for console commands.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### Example:
+- `app/App/Blog/Controllers/ArticleController.php` → Handles API routes related to articles.
+- `app/App/Blog/Requests/ArticleRequest.php` → Validates article input.
+- `app/App/Blog/Resources/Blog/ArticleResource.php` → Formats the API response.
+- `app/App/Console/Commands/ExportEntities.php` → Handles CLI export commands.
+- `app/App/Console/Commands/Concerns/TransformsDataToCsv.php` → Provides CSV transformation utilities.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **2. Domain Layer (Business Logic Layer)**
+Located in `app/Domain/`, this layer contains the core business logic and domain entities.
 
-## Laravel Sponsors
+- **Actions**: Encapsulate business operations as separate classes.
+- **Data**: Define structured data objects using Laravel Data.
+- **Models**: Represent domain entities and handle persistence.
+- **Policies**: Manage authorization rules.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### Example:
+- `app/Domain/Blog/Actions/CreateArticle.php` → Handles article creation.
+- `app/Domain/Blog/Data/ArticleData.php` → Defines article data structure.
+- `app/Domain/Blog/Models/Article.php` → Represents the article entity.
 
-### Premium Partners
+### **3. Support Layer (Infrastructure & Providers)**
+Located in `app/Support/`, this layer contains framework-specific implementations, service providers, and shared utilities.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- `app/Support/Providers/AppServiceProvider.php` → Registers services.
+- `app/Support/Providers/FactoryServiceProvider.php` → Handles model factories.
+
+## Design Principles
+### **1. Domain-Driven Design (DDD)**
+The application follows the **DDD principles**, ensuring that business logic is at the core of the system:
+- **Entities**: Defined in the `Models` namespace (e.g., `Article.php`, `Author.php`).
+- **Value Objects**: Encapsulated within `Data` classes.
+- **Use Cases (Actions)**: Encapsulated in the `Actions` namespace.
+- **Bounded Contexts**: Blog and User are treated as separate domains.
+
+### **2. Onion Architecture**
+The project adheres to **Onion Architecture**, ensuring clear separation of concerns:
+- **The Domain Layer** (core business logic) has no dependencies on the framework.
+- **The Application Layer** depends on the domain but not vice versa.
+- **The Infrastructure Layer** provides framework-specific implementations.
+
+## API Endpoints
+The application exposes various REST API endpoints for managing articles, authors, and topics. Example:
+
+```
+GET /api/articles       # Retrieve all articles
+POST /api/articles      # Create a new article
+GET /api/articles/{id}  # Retrieve a specific article
+PUT /api/articles/{id}  # Update an article
+DELETE /api/articles/{id} # Delete an article
+```
+
+## Installation
+### Prerequisites
+- PHP 8.4+
+- Laravel 11+
+- Composer
+- sqlite
+
+### Setup
+```bash
+# Install dependencies
+composer install
+
+# Setup environment
+cp .env.example .env
+php artisan key:generate
+
+# Run migrations
+php artisan migrate
+
+# Run tests
+composer test
+
+# Run code style checks (pint)
+composer cs
+
+# Run static analysis (phpstan)
+composer analyse
+
+# Start the application
+php artisan serve
+```
 
 ## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Feel free to contribute by submitting issues or pull requests. 
 
 ## License
+This project is licensed under the MIT License.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

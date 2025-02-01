@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,9 +13,23 @@
 |
 */
 
-pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spectator\Spectator;
+
+uses(
+    TestCase::class,
+    RefreshDatabase::class,
+    Methods::class,
+)
+    ->in('Contract', 'Feature', 'Unit');
+
+/*
+ | -----------------------------------------------------------------
+ | Contract testing configuration
+ | -----------------------------------------------------------------
+ */
+
+uses()->beforeEach(fn () => Spectator::using('blog.openapi.yaml'))->in('Contract');
 
 /*
 |--------------------------------------------------------------------------

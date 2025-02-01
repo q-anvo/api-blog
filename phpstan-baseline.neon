@@ -1,0 +1,289 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to an undefined method Domain\\Blog\\Models\\Article\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\Blog\\Models\\Article\>\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\Blog\\Models\\Article\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\Blog\\Models\\Article\>\>\:\:withCount\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/App/Blog/Controllers/ArticleController.php
+
+		-
+			message: '#^Call to an undefined method Domain\\User\\Models\\Author\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\User\\Models\\Author\>\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\User\\Models\\Author\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\User\\Models\\Author\>\>\:\:withCount\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/App/Blog/Controllers/AuthorController.php
+
+		-
+			message: '#^Call to an undefined method Domain\\Blog\\Models\\Topic\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\Blog\\Models\\Topic\>\:\:create\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/App/Blog/Controllers/TopicController.php
+
+		-
+			message: '#^Call to an undefined method Domain\\Blog\\Models\\Topic\|Illuminate\\Database\\Eloquent\\Builder\<Domain\\Blog\\Models\\Topic\>\:\:withCount\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/App/Blog/Controllers/TopicController.php
+
+		-
+			message: '#^Method App\\Blog\\Controllers\\TopicController\:\:store\(\) should return Illuminate\\Http\\Response but returns Illuminate\\Http\\JsonResponse\.$#'
+			identifier: return.type
+			count: 1
+			path: app/App/Blog/Controllers/TopicController.php
+
+		-
+			message: '#^Method App\\Blog\\Controllers\\TopicController\:\:update\(\) should return Illuminate\\Http\\Response but returns Illuminate\\Http\\JsonResponse\.$#'
+			identifier: return.type
+			count: 1
+			path: app/App/Blog/Controllers/TopicController.php
+
+		-
+			message: '#^Cannot call method toDateTimeString\(\) on Illuminate\\Support\\Carbon\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/App/Blog/Resources/Blog/ArticleResource.php
+
+		-
+			message: '#^Access to property \$id on an unknown class Domain\\User\\Models\\Topic\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/App/Blog/Resources/Blog/FullArticleResource.php
+
+		-
+			message: '#^Access to property \$label on an unknown class Domain\\User\\Models\\Topic\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/App/Blog/Resources/Blog/FullArticleResource.php
+
+		-
+			message: '#^Cannot call method toDateTimeString\(\) on Illuminate\\Support\\Carbon\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/App/Blog/Resources/Blog/FullArticleResource.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Domain\\User\\Models\\Topic\>\:\:map\(\) expects callable\(Domain\\User\\Models\\Topic, int\)\: array\{id\: int, label\: string\}, Closure\(Domain\\Blog\\Models\\Topic\)\: array\{id\: int, label\: string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/App/Blog/Resources/Blog/FullArticleResource.php
+
+		-
+			message: '#^Call to an undefined static method Domain\\Blog\\Models\\Article\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/App/Console/Commands/ExportEntities.php
+
+		-
+			message: '#^Call to an undefined static method Domain\\Blog\\Models\\Topic\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/App/Console/Commands/ExportEntities.php
+
+		-
+			message: '#^Call to an undefined static method Domain\\User\\Models\\Author\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/App/Console/Commands/ExportEntities.php
+
+		-
+			message: '#^Call to an undefined static method Domain\\User\\Models\\User\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/App/Console/Commands/ExportEntities.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\ExportEntities\:\:selectModel\(\) should return class\-string but returns int\|string\.$#'
+			identifier: return.type
+			count: 1
+			path: app/App/Console/Commands/ExportEntities.php
+
+		-
+			message: '#^Call to method sync\(\) on an unknown class Domain\\Blog\\Models\\BelongsToMany\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Actions/CreateArticle.php
+
+		-
+			message: '#^Call to method sync\(\) on an unknown class Domain\\Blog\\Models\\BelongsToMany\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Actions/UpdateArticle.php
+
+		-
+			message: '#^Class Domain\\Blog\\Models\\Article uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^Method Domain\\Blog\\Models\\Article\:\:author\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<Domain\\User\\Models\\Author, Domain\\Blog\\Models\\Article\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<Domain\\User\\Models\\Author, \$this\(Domain\\Blog\\Models\\Article\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^Method Domain\\Blog\\Models\\Article\:\:topics\(\) has invalid return type Domain\\Blog\\Models\\BelongsToMany\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^Method Domain\\Blog\\Models\\Article\:\:topics\(\) should return Domain\\Blog\\Models\\BelongsToMany\<Domain\\Blog\\Models\\Topic, Domain\\Blog\\Models\\Article\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<Domain\\Blog\\Models\\Topic, \$this\(Domain\\Blog\\Models\\Article\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^PHPDoc tag @method for method Domain\\Blog\\Models\\Article\:\:factory\(\) return type contains unknown class Database\\Factories\\ArticleFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^PHPDoc tag @mixin contains unknown class Eloquent\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^PHPDoc tag @property\-read for property Domain\\Blog\\Models\\Article\:\:\$topics contains unknown class Domain\\User\\Models\\Topic\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^PHPDoc tag @property\-read for property Domain\\Blog\\Models\\Article\:\:\$use_factory contains unknown class Domain\\Blog\\Models\\TFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^Type Domain\\User\\Models\\Topic in generic type Illuminate\\Database\\Eloquent\\Collection\<int, Domain\\User\\Models\\Topic\> in PHPDoc tag @property\-read for property Domain\\Blog\\Models\\Article\:\:\$topics is not subtype of template type TModel of Illuminate\\Database\\Eloquent\\Model of class Illuminate\\Database\\Eloquent\\Collection\.$#'
+			identifier: generics.notSubtype
+			count: 1
+			path: app/Domain/Blog/Models/Article.php
+
+		-
+			message: '#^Class Domain\\Blog\\Models\\Topic uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Domain/Blog/Models/Topic.php
+
+		-
+			message: '#^Method Domain\\Blog\\Models\\Topic\:\:articles\(\) has invalid return type Domain\\Blog\\Models\\BelongsToMany\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Topic.php
+
+		-
+			message: '#^Method Domain\\Blog\\Models\\Topic\:\:articles\(\) should return Domain\\Blog\\Models\\BelongsToMany\<Domain\\Blog\\Models\\Article, Domain\\Blog\\Models\\Topic\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<Domain\\Blog\\Models\\Article, \$this\(Domain\\Blog\\Models\\Topic\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Domain/Blog/Models/Topic.php
+
+		-
+			message: '#^PHPDoc tag @method for method Domain\\Blog\\Models\\Topic\:\:factory\(\) return type contains unknown class Database\\Factories\\TopicFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Topic.php
+
+		-
+			message: '#^PHPDoc tag @mixin contains unknown class Eloquent\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Topic.php
+
+		-
+			message: '#^PHPDoc tag @property\-read for property Domain\\Blog\\Models\\Topic\:\:\$use_factory contains unknown class Domain\\Blog\\Models\\TFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/Blog/Models/Topic.php
+
+		-
+			message: '#^Class Domain\\User\\Models\\Author uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Domain/User/Models/Author.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Domain\\Blog\\Models\\Article\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: app/Domain/User/Models/Author.php
+
+		-
+			message: '#^Method Domain\\User\\Models\\Author\:\:articles\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Domain\\Blog\\Models\\Article\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Domain\\Blog\\Models\\Article, \$this\(Domain\\User\\Models\\Author\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Domain/User/Models/Author.php
+
+		-
+			message: '#^Method Domain\\User\\Models\\Author\:\:user\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<Domain\\User\\Models\\User, Domain\\User\\Models\\Author\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<Domain\\User\\Models\\User, \$this\(Domain\\User\\Models\\Author\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Domain/User/Models/Author.php
+
+		-
+			message: '#^PHPDoc tag @method for method Domain\\User\\Models\\Author\:\:factory\(\) return type contains unknown class Database\\Factories\\AuthorFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/User/Models/Author.php
+
+		-
+			message: '#^PHPDoc tag @mixin contains unknown class Eloquent\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/User/Models/Author.php
+
+		-
+			message: '#^PHPDoc tag @property\-read for property Domain\\User\\Models\\Author\:\:\$use_factory contains unknown class Domain\\User\\Models\\TFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/User/Models/Author.php
+
+		-
+			message: '#^Method Domain\\User\\Models\\User\:\:author\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasOne\<Domain\\User\\Models\\Author, Domain\\User\\Models\\User\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasOne\<Domain\\User\\Models\\Author, \$this\(Domain\\User\\Models\\User\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Domain/User/Models/User.php
+
+		-
+			message: '#^PHPDoc tag @method for method Domain\\User\\Models\\User\:\:factory\(\) return type contains unknown class Database\\Factories\\UserFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/User/Models/User.php
+
+		-
+			message: '#^PHPDoc tag @mixin contains unknown class Eloquent\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/User/Models/User.php
+
+		-
+			message: '#^PHPDoc tag @property\-read for property Domain\\User\\Models\\User\:\:\$use_factory contains unknown class Domain\\User\\Models\\TFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/User/Models/User.php
+
+		-
+			message: '#^PHPDoc tag @use has invalid type Database\\Factories\\UserFactory\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Domain/User/Models/User.php
+
+		-
+			message: '#^Type Database\\Factories\\UserFactory in generic type Illuminate\\Database\\Eloquent\\Factories\\HasFactory\<Database\\Factories\\UserFactory\> in PHPDoc tag @use is not subtype of template type TFactory of Illuminate\\Database\\Eloquent\\Factories\\Factory of trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory\.$#'
+			identifier: generics.notSubtype
+			count: 1
+			path: app/Domain/User/Models/User.php
+
+		-
+			message: '#^Method Support\\Providers\\FactoryServiceProvider\:\:guessFactoryName\(\) should return class\-string\<Illuminate\\Database\\Eloquent\\Factories\\Factory\<TModel of Illuminate\\Database\\Eloquent\\Model\>\> but returns non\-falsy\-string\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/Providers/FactoryServiceProvider.php
+
+		-
+			message: '#^Method Support\\Providers\\FactoryServiceProvider\:\:guessModelName\(\) should return class\-string\<TModel of Illuminate\\Database\\Eloquent\\Model\> but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/Providers/FactoryServiceProvider.php

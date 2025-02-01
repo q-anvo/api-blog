@@ -1,0 +1,21 @@
+includes:
+  - ./phpstan-baseline.neon
+
+parameters:
+  paths:
+    - app
+
+  # The level 9 is the highest level
+  level: 8
+
+  # PHPStan strict
+  polluteScopeWithLoopInitialAssignments: false
+  polluteScopeWithAlwaysIterableForeach: false
+  checkDynamicProperties: false
+  checkExplicitMixedMissingReturn: true
+  checkFunctionNameCase: true
+  checkInternalClassCaseSensitivity: true
+  reportMaybesInMethodSignatures: true
+  reportStaticMethodSignatures: true
+  reportMaybesInPropertyPhpDocTypes: false
+  reportWrongPhpDocTypeInVarTag: true
